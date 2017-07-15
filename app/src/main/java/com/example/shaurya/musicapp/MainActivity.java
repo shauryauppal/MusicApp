@@ -15,15 +15,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mediaplayer = MediaPlayer.create(this,R.raw.euphoria);
+        mediaplayer = MediaPlayer.create(this,R.raw.number_one);
         Button play = (Button) findViewById(R.id.Play);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(MainActivity.this, "Play Music", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Play Music", Toast.LENGTH_SHORT).show();
 
                 mediaplayer.start();
+
+                mediaplayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Toast.makeText(MainActivity.this, "I am Done", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
